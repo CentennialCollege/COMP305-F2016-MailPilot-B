@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class IslandController : MonoBehaviour {
+public class CloudController : MonoBehaviour {
 	// PRIVATE INSTANCE VARIABLES +++++++++++++++++++++++++++++
 	private int _speed;
+	private int _drift;
 	private Transform _transform;
 
 	// PUBLIC PROPERTIES
@@ -13,6 +14,15 @@ public class IslandController : MonoBehaviour {
 		}
 		set {
 			this._speed = value;
+		}
+	}
+
+	public int Drift {
+		get {
+			return this._drift;
+		}
+		set {
+			this._drift = value;
 		}
 	}
 
@@ -36,7 +46,8 @@ public class IslandController : MonoBehaviour {
 	private void _move() {
 		Vector2 newPosition = this._transform.position;
 
-		newPosition.y -= this._speed;
+		newPosition.y -= this.Speed;
+		newPosition.x += this.Drift;
 
 		this._transform.position = newPosition;
 	}
@@ -45,7 +56,7 @@ public class IslandController : MonoBehaviour {
 	 * this method checks to see if the game object meets the top-border of the screen
 	 */
 	private void _checkBounds() {
-		if (this._transform.position.y <= -270f) {
+		if (this._transform.position.y <= -330f) {
 			this._reset ();
 		}
 	}
@@ -54,7 +65,8 @@ public class IslandController : MonoBehaviour {
 	 * this method resets the game object to the original position
 	 */
 	private void _reset() {
-		this._speed = 5;
-		this._transform.position = new Vector2 (Random.Range(-288f, 288f), 270f);
+		this.Speed = Random.Range (5, 10);
+		this.Drift = Random.Range (-2, 2);
+		this._transform.position = new Vector2 (Random.Range(-205f, 205f), 330f);
 	}
 }

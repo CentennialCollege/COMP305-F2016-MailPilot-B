@@ -29,6 +29,10 @@ public class PlaneController : MonoBehaviour {
 			Debug.Log ("Island Hit!");
 		}
 
+		if (other.gameObject.CompareTag ("Cloud")) {
+			Debug.Log ("Cloud Hit!");
+		}
+
 	}
 		
 }

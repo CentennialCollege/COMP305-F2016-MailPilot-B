@@ -21,7 +21,7 @@ public class OceanController : MonoBehaviour {
 	void Start () {
 		this._transform = this.GetComponent<Transform> ();
 
-		this._speed = 5;
+		this._reset ();
 	}
 	
 	// Update is called once per frame
@@ -54,6 +54,7 @@ public class OceanController : MonoBehaviour {
 	 * this method resets the game object to the original position
 	 */
 	private void _reset() {
+		this._speed = 5;
 		this._transform.position = new Vector2 (0f, 480f);
 	}
 }
